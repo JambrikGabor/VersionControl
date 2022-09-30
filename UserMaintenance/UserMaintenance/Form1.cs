@@ -13,7 +13,7 @@ namespace UserMaintenance
 {
     public partial class Form1 : Form
     {
-        BindingList<User> users = new BindingList<User>;
+        BindingList<User> users = new BindingList<User>();
         public Form1()
         {
             InitializeComponent();
@@ -33,6 +33,7 @@ namespace UserMaintenance
                 LastName = txtFirstName.Text,
                 FirstName = txtFirstName.Text
             };
+            users.Add(u);
         }
     }
 }
