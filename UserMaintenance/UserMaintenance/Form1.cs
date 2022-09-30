@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,12 +14,13 @@ namespace UserMaintenance
 {
     public partial class Form1 : Form
     {
-        BindingList<User> users = new BindingList<User>;
+        BindingList<User> users = new BindingList<User>();
         public Form1()
         {
             InitializeComponent();
             lblFullName.Text = Resource.FullName;
             btnAdd.Text = Resource.Add;
+            btnSave.Text = Resource.Save;
             listUsers.DataSource = users;
             listUsers.ValueMember = "ID";
             listUsers.DisplayMember = "FullName";
@@ -31,6 +33,24 @@ namespace UserMaintenance
             {
                 FullName = txtFullName.Text
             };
+            users.Add(u);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var sfd = new SaveFileDialog();
+            if (sfd.ShowDialog() != DialogResult.OK) return;
+            using (StreamWriter sw = new StreamWriter(sfd.FileName,false,Encoding.Default))
+            {
+                foreach (var u in users)
+                {
+                    sw.Write(u.ID.ToString());
+                    sw.Write(';');
+                    sw.Write(u.FullName);
+                    sw.WriteLine();
+                }
+            }
+            
         }
     }
 }
