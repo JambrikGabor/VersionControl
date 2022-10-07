@@ -13,10 +13,10 @@ namespace Excel
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RealEstateEntities : DbContext
+    public partial class RealEstateEntities1 : DbContext
     {
-        public RealEstateEntities()
-            : base("name=RealEstateEntities")
+        public RealEstateEntities1()
+            : base("name=RealEstateEntities1")
         {
         }
     

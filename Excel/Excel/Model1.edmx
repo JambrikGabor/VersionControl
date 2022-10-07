@@ -41,7 +41,7 @@
           <Property Name="FloorArea" Type="Int16" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="RealEstateEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="RealEstateEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Flats" EntityType="Self.Flat" />
         </EntityContainer>
       </Schema>
@@ -49,7 +49,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RealEstateModelStoreContainer" CdmEntityContainer="RealEstateEntities">
+        <EntityContainerMapping StorageEntityContainer="RealEstateModelStoreContainer" CdmEntityContainer="RealEstateEntities1">
           <EntitySetMapping Name="Flats">
             <EntityTypeMapping TypeName="RealEstateModel.Flat">
               <MappingFragment StoreEntitySet="Flat">
