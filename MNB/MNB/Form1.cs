@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Xml;
 
 namespace MNB
@@ -22,7 +23,26 @@ namespace MNB
             dataGridView1.DataSource = Rates;
             
             XML();
+            Diagram();
             
+        }
+
+        private void Diagram()
+        {
+            chartRateData.DataSource = Rates;
+            var series = chartRateData.Series[0];
+            series.ChartType = SeriesChartType.Line;
+            series.XValueMember = "Date";
+            series.YValueMembers = "Value";
+            series.BorderWidth = 2;
+
+            var legends = chartRateData.Legends[0];
+            legends.Enabled = false;
+
+            var chartArea = chartRateData.ChartAreas[0];
+            chartArea.AxisX.MajorGrid.Enabled = false;
+            chartArea.AxisY.MajorGrid.Enabled = false;
+            chartArea.AxisY.IsStartedFromZero = false;
         }
 
         public void XML()
@@ -59,7 +79,7 @@ namespace MNB
             };
             var response = mnbService.GetExchangeRates(request);
             var result = response.GetExchangeRatesResult;
-            MessageBox.Show(result);
+            //MessageBox.Show(result);
             return result;
             
         }
