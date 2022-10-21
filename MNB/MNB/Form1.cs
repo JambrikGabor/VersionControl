@@ -19,12 +19,19 @@ namespace MNB
         BindingList<RateData> Rates = new BindingList<RateData>();
         public Form1()
         {
+            RefreshData();
+            
+            
+        }
+
+        private void RefreshData()
+        {
+            Rates.Clear();
             InitializeComponent();
             dataGridView1.DataSource = Rates;
-            
+
             XML();
             Diagram();
-            
         }
 
         private void Diagram()
