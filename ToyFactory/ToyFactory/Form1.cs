@@ -12,6 +12,7 @@ namespace ToyFactory
 {
     public partial class Form1 : Form
     {
+        private List<Ball> _balls = new List<Ball>();
         public Form1()
         {
             InitializeComponent();
