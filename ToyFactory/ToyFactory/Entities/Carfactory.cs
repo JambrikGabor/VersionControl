@@ -9,7 +9,7 @@ namespace ToyFactory.Entities
 {
     public class CarFactory : IToyFactory
     {
-        public Toy CreateNew()
+        public Abstractions.Toy CreateNew()
         {
             return new Car();
         }

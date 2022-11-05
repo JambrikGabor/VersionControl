@@ -9,7 +9,7 @@ using ToyFactory.Abstractions;
 
 namespace ToyFactory.Entities
 {
-    public class Ball : Toy
+    public class Toy : Abstractions.Toy
     {
         protected override void DrawImage(Graphics g)
         {
