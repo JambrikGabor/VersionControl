@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Restaurant.Enitities
+namespace Restaurant.Abstractions
 {
     public abstract class Product : Button
     {
@@ -15,26 +15,27 @@ namespace Restaurant.Enitities
             Height = 50;
         }
         public string _foodname;
-        public string Title 
-        { 
-            get { return _foodname; } 
-            set 
+        public string Title
+        {
+            get { return _foodname; }
+            set
             {
                 _foodname = value;
-                Text = Title; } 
+                Text = Title;
+            }
         }
         private int calorynumber;
-        public int Calories 
+        public int Calories
         {
-            get 
+            get
             {
                 return calorynumber;
-            } 
-            set 
+            }
+            set
             {
                 calorynumber = value;
                 Display();
-            } 
+            }
         }
         protected abstract void Display();
     }
