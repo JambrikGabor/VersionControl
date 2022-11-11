@@ -75,21 +75,34 @@ namespace VARgyak07
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //SaveFileDialog sfd = new SaveFileDialog();
+            //sfd.Title = "Nyereséglista mentése";
+            //sfd.ShowDialog();
+
+            //if (sfd.FileName != "")
+            //{
+            //    List<string> contents = new List<string>();
+            //    contents.Add("Időszak Nyereség");
+
+            //    for (int i = 0; i < nyereseg.Count; i++)
+            //    {
+            //        contents.Add((i+1).ToString() + " " + nyereseg[i]);
+            //    }
+
+            //    File.WriteAllLines(sfd.FileName, contents.ToArray());
+            //}
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Title = "Nyereséglista mentése";
-            sfd.ShowDialog();
-
-            if (sfd.FileName != "")
+            if (sfd.ShowDialog() != DialogResult.OK) return;
+            int i = 1;
+            using (StreamWriter sw = new StreamWriter(sfd.FileName,false,Encoding.UTF8))
             {
-                List<string> contents = new List<string>();
-                contents.Add("Időszak Nyereség");
-
-                for (int i = 0; i < nyereseg.Count; i++)
+                sw.WriteLine("Időszak Nyereség");
+                foreach (var x in nyereseg)
                 {
-                    contents.Add((i+1).ToString() + " " + nyereseg[i]);
+                    
+                    sw.WriteLine(i + " " + x);
+                    i++;
                 }
-
-                File.WriteAllLines(sfd.FileName, contents.ToArray());
             }
         }
     }
