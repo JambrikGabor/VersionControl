@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Restaurant
 {
@@ -25,7 +26,8 @@ namespace Restaurant
 
         private void LoadXML()
         {
-            XMLFunction("Menu.xml");
+            var xml = new XmlDocument();
+            xml.LoadXml(XMLFunction("Menu.xml"));
         }
 
         private string XMLFunction(string filename)
