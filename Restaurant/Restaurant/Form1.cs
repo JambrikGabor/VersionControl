@@ -18,8 +18,14 @@ namespace Restaurant
         public Form1()
         {
             InitializeComponent();
-            XMLFunction("Menu.xml");
+            LoadXML();
+            
 
+        }
+
+        private void LoadXML()
+        {
+            XMLFunction("Menu.xml");
         }
 
         private string XMLFunction(string filename)
