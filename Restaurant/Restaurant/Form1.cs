@@ -18,7 +18,7 @@ namespace Restaurant
         public Form1()
         {
             InitializeComponent();
-            XMLFunction("");
+            XMLFunction("Menu.xml");
 
         }
 
