@@ -2,6 +2,7 @@
 using Restaurant.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,21 @@ namespace Restaurant.Entities
     {
         protected override void Display()
         {
-            throw new NotImplementedException();
+            
+            if (Calories<=750)
+            {
+                BackColor = Color.LightGreen;
+            }
+            else if (Calories<=1000)
+            {
+                BackColor = Color.LightYellow;
+            }
+            else
+            {
+                BackColor = Color.Salmon;
+            }
+            
+            
         }
         public string Description { get; set; }
 
