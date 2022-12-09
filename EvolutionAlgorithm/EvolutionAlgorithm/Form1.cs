@@ -21,10 +21,18 @@ namespace EvolutionAlgorithm
         int nbrOfStepsIncrement = 10;
         int generation = 1;
 
+        Brain winnerBrain;
+
         public Form1()
         {
             InitializeComponent();
-
+            button1.BringToFront();
+            if (winnerBrain!=null)
+            {
+                button1.Show();
+            }
+            
+            
             ga = gc.ActivateDisplay();
             this.Controls.Add(ga);
             //gc.AddPlayer();
@@ -47,6 +55,15 @@ namespace EvolutionAlgorithm
                              orderby p.GetFitness() descending
                              select p;
             var topPerformers = playerList.Take(populationSize / 2).ToList();
+            foreach (var p in playerList)
+            {
+                if (p.IsWinner==true)
+                {
+                    winnerBrain = p.Brain;
+                    gc.GameOver -= Gc_GameOver;
+                    return;
+                }
+            }
             gc.ResetCurrentLevel();
             foreach (var p in topPerformers)
             {
