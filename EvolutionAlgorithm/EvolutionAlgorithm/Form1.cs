@@ -26,11 +26,9 @@ namespace EvolutionAlgorithm
         public Form1()
         {
             InitializeComponent();
+            
             button1.BringToFront();
-            if (winnerBrain!=null)
-            {
-                button1.Show();
-            }
+            button1.Hide();
             
             
             ga = gc.ActivateDisplay();
@@ -60,6 +58,7 @@ namespace EvolutionAlgorithm
                 if (p.IsWinner==true)
                 {
                     winnerBrain = p.Brain;
+                    button1.Show();
                     gc.GameOver -= Gc_GameOver;
                     return;
                 }
@@ -81,6 +80,15 @@ namespace EvolutionAlgorithm
             gc.Start();
             //New Generation
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            gc.ResetCurrentLevel();
+            gc.AddPlayer(winnerBrain.Clone());
+            gc.AddPlayer();
+            ga.Focus();
+            gc.Start(true);
         }
     }
 }
