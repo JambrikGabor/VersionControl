@@ -62,6 +62,7 @@ namespace EvolutionAlgorithm
                     gc.AddPlayer(b.Mutate());
             }
             gc.Start();
+            //New Generation
 
         }
     }
