@@ -27,7 +27,7 @@ namespace Microsimulation
             InitializeComponent();
             numericUpDown1.Minimum = 2005;
             numericUpDown1.Maximum = 2105;
-            Population = GetPopulation(@"C:\Temp\nép.csv");
+            Population = GetPopulation(@"C:\Temp\nép-teszt.csv");
             BirthProbabilities = GetBirthProbabilites(@"C:\Temp\születés.csv");
             DeathProbabilities = GetDeathProbabilites(@"C:\Temp\halál.csv");
             
@@ -159,8 +159,8 @@ namespace Microsimulation
                 int nbrOfFemales = (from x in Population
                                     where x.Gender == Gender.Female && x.IsAlive
                                     select x).Count();
-                male[2005-year]= nbrOfMales;
-                female[2005 - year] = nbrOfFemales;
+                male[year]= nbrOfMales;
+                female[year] = nbrOfFemales;
                 Console.WriteLine(
                     string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
             }
