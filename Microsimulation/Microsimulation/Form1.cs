@@ -21,26 +21,42 @@ namespace Microsimulation
         public Form1()
         {
             InitializeComponent();
-            Population = GetPopulation(@"C:\Temp\nép.csv");
+            Population = GetPopulation(textBox1.Text);
             BirthProbabilities = GetBirthProbabilites(@"C:\Temp\születés.csv");
             DeathProbabilities = GetDeathProbabilites(@"C:\Temp\halál.csv");
-            for (int year = 2005; year <= 2024; year++)
-            {
-                // Végigmegyünk az összes személyen
-                for (int i = 0; i < Population.Count; i++)
-                {
-                    // Ide jön a szimulációs lépés
-                }
+            
+            
+        }
 
-                int nbrOfMales = (from x in Population
-                                  where x.Gender == Gender.Male && x.IsAlive
-                                  select x).Count();
-                int nbrOfFemales = (from x in Population
-                                    where x.Gender == Gender.Female && x.IsAlive
-                                    select x).Count();
-                Console.WriteLine(
-                    string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
+        private void SimStep(int year, Person person)
+        {
+            if(!person.IsAlive) return;
+            int personAge = year - person.BirthYear;
+            double deathProb = (from x in DeathProbabilities
+                                   where x.Gender == person.Gender && x.Age == personAge
+                                   select x.ProbabilityOfDeath).FirstOrDefault();
+            if (rng.NextDouble() <= deathProb)
+            {
+                person.IsAlive = false;
             }
+            if (person.IsAlive == true && person.Gender == Gender.Female)
+            {
+                double birthProb = (from x in BirthProbabilities
+                                    where x.Age == personAge && x.NumberOfChildren == person.NumberOfChildren
+                                    select x.ProbabilityOfBirth).FirstOrDefault();
+                if (rng.NextDouble() <= birthProb)
+                {
+                    //person.NumberOfChildren++;
+                    Person newperson = new Person();
+                    newperson.BirthYear = year;
+                    newperson.Gender = (Gender)rng.Next(1,3);
+                    newperson.NumberOfChildren = 0;
+                    newperson.IsAlive = true;
+                    Population.Add(newperson);
+                }
+            }
+            
+
         }
 
         public List<DeathProbability> GetDeathProbabilites(string csvpath)
@@ -100,6 +116,40 @@ namespace Microsimulation
                 }
             }
             return population;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Simulation();
+        }
+
+        private void Simulation()
+        {
+            for (int year = 2005; year <= numericUpDown1.Value; year++)
+            {
+                // Végigmegyünk az összes személyen
+                for (int i = 0; i < Population.Count; i++)
+                {
+                    // Ide jön a szimulációs lépés
+                    SimStep(year, Population[i]);
+                }
+
+                int nbrOfMales = (from x in Population
+                                  where x.Gender == Gender.Male && x.IsAlive
+                                  select x).Count();
+                int nbrOfFemales = (from x in Population
+                                    where x.Gender == Gender.Female && x.IsAlive
+                                    select x).Count();
+                Console.WriteLine(
+                    string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() != DialogResult.OK) return;
+            textBox1.Text = ofd.FileName.ToString();
         }
     }
 }
