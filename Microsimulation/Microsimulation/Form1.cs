@@ -18,6 +18,8 @@ namespace Microsimulation
         List<BirthProbability> BirthProbabilities = new List<BirthProbability>();
         List<DeathProbability> DeathProbabilities = new List<DeathProbability>();
         Random rng = new Random(1234);
+        List<int> male = new List<int>();
+        List<int> female = new List<int>();
         public Form1()
         {
             InitializeComponent();
@@ -140,6 +142,8 @@ namespace Microsimulation
                 int nbrOfFemales = (from x in Population
                                     where x.Gender == Gender.Female && x.IsAlive
                                     select x).Count();
+                male[2005-year]= nbrOfMales;
+                female[2005 - year] = nbrOfFemales;
                 Console.WriteLine(
                     string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
             }
