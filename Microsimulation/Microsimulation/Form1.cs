@@ -20,10 +20,14 @@ namespace Microsimulation
         Random rng = new Random(1234);
         List<int> male = new List<int>();
         List<int> female = new List<int>();
+        
         public Form1()
         {
+            
             InitializeComponent();
-            Population = GetPopulation(textBox1.Text);
+            numericUpDown1.Minimum = 2005;
+            numericUpDown1.Maximum = 2105;
+            Population = GetPopulation(@"C:\Temp\nép.csv");
             BirthProbabilities = GetBirthProbabilites(@"C:\Temp\születés.csv");
             DeathProbabilities = GetDeathProbabilites(@"C:\Temp\halál.csv");
             
@@ -122,11 +126,24 @@ namespace Microsimulation
 
         private void button1_Click(object sender, EventArgs e)
         {
+            richTextBox1.Clear();
+            male.Clear();
+            female.Clear();
             Simulation();
+            DisplayResults();
+        }
+
+        private void DisplayResults()
+        {
+            for (int year = 2005; year < numericUpDown1.Value; year++)
+            {
+                richTextBox1.Text += ("Szimulációs év: " + year);
+            }
         }
 
         private void Simulation()
         {
+            Population = GetPopulation(textBox1.Text);
             for (int year = 2005; year <= numericUpDown1.Value; year++)
             {
                 // Végigmegyünk az összes személyen
