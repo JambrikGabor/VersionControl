@@ -146,10 +146,10 @@ namespace Microsimulation
             Population = GetPopulation(textBox1.Text);
             for (int year = 2005; year <= numericUpDown1.Value; year++)
             {
-                // Végigmegyünk az összes személyen
+                
                 for (int i = 0; i < Population.Count; i++)
                 {
-                    // Ide jön a szimulációs lépés
+                    
                     SimStep(year, Population[i]);
                 }
 
