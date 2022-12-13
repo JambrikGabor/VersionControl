@@ -135,9 +135,9 @@ namespace Microsimulation
 
         private void DisplayResults()
         {
-            for (int year = 2005; year < numericUpDown1.Value; year++)
+            for (int year = 2005; year <= numericUpDown1.Value; year++)
             {
-                richTextBox1.Text += ("Szimulációs év: " + year);
+                richTextBox1.Text += string.Format("Szimulációs év: {0}\n", year);
             }
         }
 
@@ -159,8 +159,8 @@ namespace Microsimulation
                 int nbrOfFemales = (from x in Population
                                     where x.Gender == Gender.Female && x.IsAlive
                                     select x).Count();
-                male[year]= nbrOfMales;
-                female[year] = nbrOfFemales;
+                //male[year]= nbrOfMales;
+                //female[year] = nbrOfFemales;
                 Console.WriteLine(
                     string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
             }
