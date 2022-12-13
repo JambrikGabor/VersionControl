@@ -137,7 +137,7 @@ namespace Microsimulation
         {
             for (int year = 2005; year <= numericUpDown1.Value; year++)
             {
-                richTextBox1.Text += string.Format("Szimulációs év: {0}\n", year);
+                richTextBox1.Text += string.Format("Szimulációs év: {0}\n\tFiúk: {1}\n\tLányok: {2}\n\n", year,male,female);
             }
         }
 
