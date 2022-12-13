@@ -20,7 +20,8 @@ namespace Microsimulation
         Random rng = new Random(1234);
         List<int> male = new List<int>();
         List<int> female = new List<int>();
-        
+        int[] male2= new int[100];
+        int[] female2 = new int[100];
         public Form1()
         {
             
@@ -137,7 +138,7 @@ namespace Microsimulation
         {
             for (int year = 2005; year <= numericUpDown1.Value; year++)
             {
-                richTextBox1.Text += string.Format("Szimulációs év: {0}\n\tFiúk: {1}\n\tLányok: {2}\n\n", year,male,female);
+                richTextBox1.Text += string.Format("Szimulációs év: {0}\n\tFiúk: {1}\n\tLányok: {2}\n\n", year,male2[year-2005],female2[year-2005]);
             }
         }
 
@@ -159,8 +160,8 @@ namespace Microsimulation
                 int nbrOfFemales = (from x in Population
                                     where x.Gender == Gender.Female && x.IsAlive
                                     select x).Count();
-                //male[year]= nbrOfMales;
-                //female[year] = nbrOfFemales;
+                male2[year-2005]= nbrOfMales;
+                female2[year-2005] = nbrOfFemales;
                 Console.WriteLine(
                     string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
             }
