@@ -12,9 +12,13 @@ namespace ZC3A7LMintaZH3_2.Entities2
         public string Name { get; set; }
         public Behaviour ChildBehaviour { get; set; }
 
-        CheckBehaviour(int number,bool bool) 
+        public bool CheckBehaviour(int number) 
         {
-            if (number<=5)
+            if (number>=1 &&number<=5)
+            {
+                return true;
+            }
+            else
             {
                 return false;
             }
