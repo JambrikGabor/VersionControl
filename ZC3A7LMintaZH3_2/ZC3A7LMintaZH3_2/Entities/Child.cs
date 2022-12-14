@@ -1,16 +1,19 @@
-﻿using System;
+﻿using PackMaker;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ZC3A7LMintaZH3_2.Entities;
+using ZC3A7LMintaZH3_2.Enum;
 
-namespace ZC3A7LMintaZH3_2.Entities2
+namespace ZC3A7LMintaZH3_2.Entities
 {
     public class Child
     {
         public string Name { get; set; }
         public Behaviour ChildBehaviour { get; set; }
+
+        public List<Gift> Gifts { get; set; }
 
         public bool CheckBehaviour(int number) 
         {

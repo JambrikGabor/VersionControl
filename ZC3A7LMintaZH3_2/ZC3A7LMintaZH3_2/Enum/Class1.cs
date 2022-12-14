@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZC3A7LMintaZH3_2.Entities
+namespace ZC3A7LMintaZH3_2.Enum
 {
     public enum Behaviour 
     {
