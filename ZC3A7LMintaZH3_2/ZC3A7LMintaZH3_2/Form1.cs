@@ -33,6 +33,12 @@ namespace ZC3A7LMintaZH3_2
                 MessageBox.Show("Nem megfelelő érték!");
                 return;
             }
+            string childName = textBoxName.Text;
+            if (c.CheckName(childName)==false)
+            {
+                MessageBox.Show("Nem megfelelő érték!");
+                return;
+            }
             c.Gifts=santaPack.GetGifts(userChildBehaviour);
             c.Name = textBoxName.Text;
             c.ChildBehaviour = (Behaviour)(userChildBehaviour);
