@@ -21,7 +21,26 @@ namespace ZC3A7LMintaZH3_2
         public Form1()
         {
             InitializeComponent();
+            children = LoadInput(@"C:\Temp\Input.txt");
             dataGridView1.DataSource = children;
+            dataGridView1.Columns[0].HeaderText = "KORTE";
+        }
+
+        private BindingList<Child> LoadInput(string v)
+        {
+            BindingList<Child> Children = new BindingList<Child>();
+            StreamReader sr = new StreamReader(v);
+            sr.ReadLine();
+            while (!sr.EndOfStream)
+            {
+                string[] line = sr.ReadLine().Split(';');
+                Child c = new Child();
+                c.Name = line[0];
+                c.ChildBehaviour = (Behaviour)int.Parse(line[1]);
+                Children.Add(c);
+            }
+
+            return Children;
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)

@@ -29,16 +29,27 @@ namespace ZC3A7LMintaZH3_2.Entities
         }
         public bool CheckName(string name) 
         {
-            Regex r = new Regex("^[A-Z]{*1}"+"[a-z]{,40}"+" "+"[A-Z]{*1}"+"[a-z]{,40}$");
-            if (r.IsMatch(name)==true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-            
+            Regex r = new Regex("^[ÁÉŐÚÖÜÓŰÍA-Z]{1}" + "[áéöőüűóúía-z]{0,40}" + "\\s" + "[ÁÉŐÚÖÜÓŰÍA-Z]{1}" + "[áéöőüűóúía-z]{0,40}$");
+
+            //bool isLowLetter = false, isCaptialLetter = false, isNumber = false;
+            //for (int i = 0; i < name.Length; i++)
+            //{
+            //    if (Char.IsLower(name[i])) isLowLetter = true;
+            //    if (Char.IsUpper(name[i])) isCaptialLetter = true;
+            //    if (Char.IsDigit(name[i])) isNumber = true;
+            //}
+
+            return r.IsMatch(name); //&& isLowLetter && isCaptialLetter && isNumber;
+
+            //if (r.IsMatch(name))
+            //{
+            //    return true;
+            //}
+            //else
+            //{
+            //    return false;
+            //}
+
         }
     }
 }
