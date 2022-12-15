@@ -29,7 +29,7 @@ namespace ZC3A7LMintaZH3_2.Entities
         }
         public bool CheckName(string name) 
         {
-            Regex r = new Regex("^[ÁÉŐÚÖÜÓŰÍA-Z]{1}" + "[áéöőüűóúía-z]{0,40}" + "\\s" + "[ÁÉŐÚÖÜÓŰÍA-Z]{1}" + "[áéöőüűóúía-z]{0,40}$");
+            Regex r = new Regex("^[ÁÉŐÚÖÜÓŰÍA-Z]{1}[áéöőüűóúía-z]{0,40}\\s[ÁÉŐÚÖÜÓŰÍA-Z]{1}[áéöőüűóúía-z]{0,40}$");
 
             //bool isLowLetter = false, isCaptialLetter = false, isNumber = false;
             //for (int i = 0; i < name.Length; i++)

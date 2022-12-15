@@ -26,7 +26,7 @@ namespace ZC3A7LMintaZH3_2
             dataGridView1.Columns[0].HeaderText = "KORTE";
         }
 
-        private BindingList<Child> LoadInput(string v)
+        public BindingList<Child> LoadInput(string v)
         {
             BindingList<Child> Children = new BindingList<Child>();
             StreamReader sr = new StreamReader(v);
@@ -34,10 +34,15 @@ namespace ZC3A7LMintaZH3_2
             while (!sr.EndOfStream)
             {
                 string[] line = sr.ReadLine().Split(';');
-                Child c = new Child();
-                c.Name = line[0];
-                c.ChildBehaviour = (Behaviour)int.Parse(line[1]);
-                Children.Add(c);
+                //Child c = new Child();
+                //c.Name = line[0];
+                //c.ChildBehaviour = (Behaviour)int.Parse(line[1]);
+                //Children.Add(c);
+                Children.Add(new Child() 
+                {
+                    Name = line[0],
+                    ChildBehaviour = (Behaviour)int.Parse(line[1])
+                });
             }
 
             return Children;
